@@ -1,120 +1,318 @@
 <?php
-
 session_start();
 
 if(!isset($_SESSION['user'])){
-
-    header("Location: login.php");
-
+    header("Location: admin_login.php");
     exit();
 }
 
-if($_SESSION['role'] != 'admin'){
-
+if($_SESSION['role'] != "admin"){
     header("Location: dashboard.php");
-
     exit();
 }
 
+include 'db.php';
+
+$totalGames = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM games"));
+$totalUsers = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM users"));
+
+$totalOrders = 0;
+if(mysqli_query($conn,"SHOW TABLES LIKE 'orders'")->num_rows > 0){
+    $totalOrders = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM orders"));
+}
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>Admin Dashboard</title>
+<meta charset="UTF-8">
+
+<title>GameHub Admin Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#111827;
+    color:white;
+}
+
+.sidebar{
+
+    width:250px;
+    height:100vh;
+
+    position:fixed;
+
+    background:#1f2937;
+
+    padding-top:30px;
+
+}
+
+.sidebar h2{
+
+    text-align:center;
+
+    color:#8b5cf6;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:18px 25px;
+
+    transition:.3s;
+
+}
+
+.sidebar a:hover{
+
+    background:#8b5cf6;
+
+}
+
+.main{
+
+    margin-left:250px;
+
+    padding:40px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.card{
+
+    background:#1f2937;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+.card h3{
+
+    font-size:20px;
+
+}
+
+.number{
+
+    font-size:40px;
+
+    color:#8b5cf6;
+
+    margin-top:15px;
+
+}
+
+.actions{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
+
+.action{
+
+    background:#1f2937;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+.action a{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#8b5cf6;
+
+    padding:12px 20px;
+
+    display:inline-block;
+
+    border-radius:8px;
+
+    margin-top:15px;
+
+}
+
+.action a:hover{
+
+    background:#6d28d9;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="navbar">
+<div class="sidebar">
 
-<div class="logo-brand">
-👑 Admin Panel
+<h2>🎮 GameHub</h2>
+
+<a href="admin_dashboard.php">🏠 Dashboard</a>
+
+<a href="admin_games.php">🎮 Manage Games</a>
+
+<a href="users.php">👥 View Users</a>
+
+<a href="orders.php">📦 Orders</a>
+
+<a href="payments.php">💳 Payments</a>
+
+<a href="logout.php">🚪 Logout</a>
+
 </div>
 
-<div class="nav-links">
-
-<a href="index.php">Home</a>
-
-<a href="add_game.php">Manage Products</a>
-
-<a href="login.php">Logout</a>
-
-</div>
-
-</div>
-
-<div class="dashboard">
+<div class="main">
 
 <h1>
 
-Welcome Admin <?php echo $_SESSION['user']; ?> 🔥
+Welcome Admin,
+<?php echo htmlspecialchars($_SESSION['user']); ?> 👑
 
 </h1>
 
-<p class="subtitle">
+<p>
 
-Manage GameHub products and gaming inventory.
+Manage your GameHub platform from one place.
 
 </p>
 
-<div class="games-grid">
+<br>
 
-<div class="game-card">
+<div class="cards">
 
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1971&auto=format&fit=crop">
+<div class="card">
 
-<div class="game-info">
+<h3>Total Games</h3>
 
-<h3>Add Gaming Equipment</h3>
+<div class="number">
 
-<p>Manage store inventory</p>
+<?php echo $totalGames; ?>
 
-<div class="price">
-ADMIN
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Total Users</h3>
+
+<div class="number">
+
+<?php echo $totalUsers; ?>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Total Orders</h3>
+
+<div class="number">
+
+<?php echo $totalOrders; ?>
+
 </div>
 
 </div>
 
 </div>
 
-<div class="game-card">
+<div class="actions">
 
-<img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=1974&auto=format&fit=crop">
+<div class="action">
 
-<div class="game-info">
+<h3>🎮 Manage Games</h3>
 
-<h3>Manage Users</h3>
+<p>Add, edit and delete products.</p>
 
-<p>Control registered accounts</p>
+<a href="admin_games.php">
 
-<div class="price">
-ADMIN
-</div>
+Open
 
-</div>
+</a>
 
 </div>
 
-<div class="game-card">
+<div class="action">
 
-<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=2070&auto=format&fit=crop">
+<h3>👥 Manage Users</h3>
 
-<div class="game-info">
+<p>View registered customers.</p>
 
-<h3>Sales Analytics</h3>
+<a href="users.php">
 
-<p>Monitor platform growth</p>
+Open
 
-<div class="price">
-ADMIN
-</div>
+</a>
 
 </div>
+
+<div class="action">
+
+<h3>📦 Orders</h3>
+
+<p>Monitor customer orders.</p>
+
+<a href="orders.php">
+
+Open
+
+</a>
+
+</div>
+
+<div class="action">
+
+<h3>💳 Payments</h3>
+
+<p>Track successful payments.</p>
+
+<a href="payments.php">
+
+Open
+
+</a>
 
 </div>
 
@@ -123,4 +321,5 @@ ADMIN
 </div>
 
 </body>
+
 </html>

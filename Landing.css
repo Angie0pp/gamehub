@@ -1,0 +1,421 @@
+/*=============================
+        GAMEHUB LANDING
+==============================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#080b17;
+    color:white;
+}
+
+/* Navigation */
+
+nav{
+
+    position:fixed;
+    top:0;
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 8%;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(15px);
+
+    z-index:999;
+
+}
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#9d4edd;
+
+}
+
+nav ul{
+
+    display:flex;
+
+    list-style:none;
+
+    align-items:center;
+
+}
+
+nav ul li{
+
+    margin-left:35px;
+
+}
+
+nav ul li a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+    transition:.4s;
+
+}
+
+nav ul li a:hover{
+
+    color:#9d4edd;
+
+}
+
+.admin{
+
+    background:#9d4edd;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+}
+
+.admin:hover{
+
+    background:#7b2cbf;
+
+    color:white;
+
+}
+
+/* HERO */
+
+.hero{
+
+    width:100%;
+
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),
+    url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=80");
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:8%;
+
+}
+
+.hero-text{
+
+    width:650px;
+
+}
+
+.hero-text h1{
+
+    font-size:70px;
+
+    line-height:82px;
+
+    margin-bottom:25px;
+
+}
+
+.hero-text p{
+
+    font-size:22px;
+
+    color:#d1d5db;
+
+    line-height:36px;
+
+    margin-bottom:40px;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.buttons a{
+
+    text-decoration:none;
+
+    padding:16px 35px;
+
+    border-radius:40px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.4s;
+
+}
+
+.buttons a:first-child{
+
+    background:#9d4edd;
+
+    color:white;
+
+}
+
+.buttons a:first-child:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 0 20px #9d4edd;
+
+}
+
+.admin-btn{
+
+    background:transparent;
+
+    border:2px solid #9d4edd;
+
+    color:white;
+
+}
+
+.admin-btn:hover{
+
+    background:#9d4edd;
+
+}
+
+/* FEATURES */
+
+.features{
+
+    padding:100px 8%;
+
+    background:#0f172a;
+
+}
+
+.features h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:60px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:35px;
+
+}
+
+.card{
+
+    background:#111827;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    transition:.4s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 0 30px rgba(157,78,221,.5);
+
+}
+
+.card h3{
+
+    font-size:26px;
+
+    margin-bottom:18px;
+
+}
+
+.card p{
+
+    color:#cbd5e1;
+
+    line-height:30px;
+
+}
+
+/* PORTAL */
+
+.portal{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+
+    gap:40px;
+
+    padding:100px 8%;
+
+    background:#080b17;
+
+}
+
+.portal-card{
+
+    background:#111827;
+
+    border-radius:25px;
+
+    padding:50px;
+
+    text-align:center;
+
+    transition:.4s;
+
+}
+
+.portal-card:hover{
+
+    transform:scale(1.04);
+
+}
+
+.portal-card h2{
+
+    font-size:34px;
+
+    margin-bottom:25px;
+
+}
+
+.portal-card p{
+
+    color:#d1d5db;
+
+    line-height:34px;
+
+    margin-bottom:35px;
+
+}
+
+.portal-card a{
+
+    display:inline-block;
+
+    background:#9d4edd;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    transition:.4s;
+
+}
+
+.portal-card a:hover{
+
+    background:#7b2cbf;
+
+}
+
+/* FOOTER */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    background:#0f172a;
+
+    color:#94a3b8;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero{
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:0 30px;
+
+}
+
+.hero-text{
+
+    width:100%;
+
+}
+
+.hero-text h1{
+
+    font-size:48px;
+
+    line-height:60px;
+
+}
+
+.buttons{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+nav{
+
+    flex-direction:column;
+
+}
+
+nav ul{
+
+    margin-top:20px;
+
+}
+
+nav ul li{
+
+    margin:10px;
+
+}
+
+}
